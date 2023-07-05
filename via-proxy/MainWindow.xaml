@@ -1,0 +1,24 @@
+﻿<Window x:Class="via_proxy.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:via_proxy"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="289" Width="448">
+    <Grid Margin="0,0,10,-16">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="113*"/>
+            <ColumnDefinition Width="687*"/>
+        </Grid.ColumnDefinitions>
+        <Label Content="Via proxy - start socks or http proxy (the easy way)" HorizontalAlignment="Left" Height="32" Margin="4,7,0,0" VerticalAlignment="Top" Width="290" Grid.ColumnSpan="2"/>
+        <Label Content="By: Girorme" HorizontalAlignment="Left" Height="32" Margin="0,239,0,0" VerticalAlignment="Top" Width="71" Grid.ColumnSpan="2"/>
+        <GroupBox Grid.ColumnSpan="2" HorizontalAlignment="Left" Height="57" Header="Socks5 init" Margin="10,39,0,0" VerticalAlignment="Top" Width="152">
+            <Button Content="Create socks proxy" HorizontalAlignment="Center" Width="131" VerticalAlignment="Center"/>
+        </GroupBox>
+        <TextBlock Grid.Column="1" HorizontalAlignment="Left" Margin="234,55,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="164" Width="132"><Run Text="Goal:"/><LineBreak/><Run/><LineBreak/><Run Text="- Start a socks5 proxy via ssh"/><LineBreak/><Run/><LineBreak/><Run Text="- Upgrade the socks5 proxy to http (to use in programs like lens or other (browsers are ok to go too..."/></TextBlock>
+        <TextBlock HorizontalAlignment="Center" Height="19" Margin="0,101,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="42"><Run Language="pt-br" Text="Status:"/></TextBlock>
+        <TextBlock HorizontalAlignment="Left" Height="19" Margin="48,101,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="52" Grid.ColumnSpan="2"><Run Language="pt-br" Text="Disabled"/></TextBlock>
+
+    </Grid>
+</Window>
