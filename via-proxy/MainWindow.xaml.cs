@@ -32,8 +32,8 @@ namespace via_proxy
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
-            Window win2 = new Window();
-            win2.Show();
+            ProcessManager pm = new ProcessManager();
+            pm.start_process();
         }
     }
 }
