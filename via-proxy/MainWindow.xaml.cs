@@ -29,5 +29,11 @@ namespace via_proxy
         {
             MessageBox.Show("Proxy has been upgraded to http...");
         }
+
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+            Window win2 = new Window();
+            win2.Show();
+        }
     }
 }
