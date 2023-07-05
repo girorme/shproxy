@@ -5,20 +5,27 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:via_proxy"
         mc:Ignorable="d"
-        Title="MainWindow" Height="289" Width="448">
-    <Grid Margin="0,0,10,-16">
+        Title="Via Proxy" Height="225" Width="426" ResizeMode="NoResize">
+    <Grid x:Name="Main" Margin="0,0,10,3" Opacity="0.8">
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="113*"/>
-            <ColumnDefinition Width="687*"/>
+            <ColumnDefinition/>
         </Grid.ColumnDefinitions>
-        <Label Content="Via proxy - start socks or http proxy (the easy way)" HorizontalAlignment="Left" Height="32" Margin="4,7,0,0" VerticalAlignment="Top" Width="290" Grid.ColumnSpan="2"/>
-        <Label Content="By: Girorme" HorizontalAlignment="Left" Height="32" Margin="0,239,0,0" VerticalAlignment="Top" Width="71" Grid.ColumnSpan="2"/>
-        <GroupBox Grid.ColumnSpan="2" HorizontalAlignment="Left" Height="57" Header="Socks5 init" Margin="10,39,0,0" VerticalAlignment="Top" Width="152">
+        <Label Content="Via proxy - start socks or http proxy (the easy way)" HorizontalAlignment="Left" Height="32" Margin="4,7,0,0" VerticalAlignment="Top" Width="290"/>
+        <Label Content="By: Girorme" HorizontalAlignment="Left" Height="32" Margin="0,178,0,0" VerticalAlignment="Top" Width="71"/>
+        <GroupBox HorizontalAlignment="Left" Height="61" Header="Socks5 init" Margin="10,39,0,0" VerticalAlignment="Top" Width="152">
             <Button Content="Create socks proxy" HorizontalAlignment="Center" Width="131" VerticalAlignment="Center"/>
         </GroupBox>
-        <TextBlock Grid.Column="1" HorizontalAlignment="Left" Margin="234,55,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="164" Width="132"><Run Text="Goal:"/><LineBreak/><Run/><LineBreak/><Run Text="- Start a socks5 proxy via ssh"/><LineBreak/><Run/><LineBreak/><Run Text="- Upgrade the socks5 proxy to http (to use in programs like lens or other (browsers are ok to go too..."/></TextBlock>
-        <TextBlock HorizontalAlignment="Center" Height="19" Margin="0,101,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="42"><Run Language="pt-br" Text="Status:"/></TextBlock>
-        <TextBlock HorizontalAlignment="Left" Height="19" Margin="48,101,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="52" Grid.ColumnSpan="2"><Run Language="pt-br" Text="Disabled"/></TextBlock>
+        <TextBlock HorizontalAlignment="Left" Height="19" Margin="16,85,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="42" FontSize="10"><Run Language="pt-br" Text="Status:"/></TextBlock>
+        <TextBlock HorizontalAlignment="Left" Height="19" Margin="48,86,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="52" Foreground="#FFFF9504" FontSize="10"><Run Language="pt-br" Text="Disabled"/></TextBlock>
+        <GroupBox HorizontalAlignment="Left" Height="122" Header="Goal" Margin="179,37,0,0" VerticalAlignment="Top" Width="242">
+            <TextBlock HorizontalAlignment="Left" Margin="10,0,0,0" TextWrapping="Wrap" Height="95"><Run Text="- Start a socks5 proxy via ssh"/><LineBreak/><Run/><LineBreak/><Run Text="- Upgrade the socks5 proxy to http (to use in programs like lens or other (browsers are ok to go too..."/><Run Language="pt-br" Text=")"/></TextBlock>
+        </GroupBox>
+        <GroupBox HorizontalAlignment="Left" Height="69" Header="Http socks upgrade" Margin="10,104,0,0" VerticalAlignment="Top" Width="152">
+            <Button Content="Upgrade socks to http" HorizontalAlignment="Center" Width="131" VerticalAlignment="Center" Click="Button_Click"/>
+        </GroupBox>
+        <TextBlock HorizontalAlignment="Left" Height="19" Margin="15,156,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="42" FontSize="10"><Run Language="pt-br" Text="Status:"/></TextBlock>
+        <TextBlock HorizontalAlignment="Left" Height="19" Margin="47,157,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="52" Foreground="#FFFF9504" FontSize="10"><Run Language="pt-br" Text="Disabled"/></TextBlock>
+        <Label Content="v0.0.1" HorizontalAlignment="Left" Height="32" Margin="381,181,0,0" VerticalAlignment="Top" Width="71"/>
 
     </Grid>
 </Window>
