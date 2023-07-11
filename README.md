@@ -1,1 +1,1 @@
-# via-proxy
+# sh-proxy
