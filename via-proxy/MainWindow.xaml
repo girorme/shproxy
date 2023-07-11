@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:via_proxy"
         mc:Ignorable="d"
-        Title="Via Proxy" Height="233" Width="426" ResizeMode="NoResize">
+        Title="SH Proxy" Height="233" Width="426" ResizeMode="NoResize">
     <Grid x:Name="Main" Margin="0,0,0,3" Opacity="0.8">
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
@@ -17,21 +17,22 @@
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition/>
                     </Grid.ColumnDefinitions>
-                    <GroupBox HorizontalAlignment="Left" Height="64" Header="Socks5 init" Margin="8,5,0,0" VerticalAlignment="Top" Width="152">
-                        <Button Content="Create socks proxy" HorizontalAlignment="Center" Width="131" VerticalAlignment="Center" Click="Button_Click_1"/>
+                    <GroupBox HorizontalAlignment="Left" Height="64" Header="Socks5 Proxy" Margin="8,5,0,0" VerticalAlignment="Top" Width="152">
+                        <Button x:Name="startSocksProxyBtn" Content="Start" HorizontalAlignment="Left" Width="131" VerticalAlignment="Center" Click="Button_Click_1"/>
                     </GroupBox>
                     <TextBlock HorizontalAlignment="Left" Height="18" Margin="13,53,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="42" FontSize="10"><Run Language="pt-br" Text="Status:"/></TextBlock>
-                    <TextBlock HorizontalAlignment="Left" Height="18" Margin="44,53,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="52" Foreground="#FFFF9504" FontSize="10"><Run Language="pt-br" Text="Disabled"/></TextBlock>
+                    <TextBlock x:Name="labelSocksProxyStatus" HorizontalAlignment="Left" Height="18" Margin="44,53,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="52" Foreground="#FFFF9504" FontSize="10"><Run Language="pt-br" Text="Disabled"/></TextBlock>
                     <GroupBox HorizontalAlignment="Left" Height="143" Header="Goal" Margin="167,5,0,0" VerticalAlignment="Top" Width="237">
-                        <TextBlock HorizontalAlignment="Left" Margin="10,0,0,0" TextWrapping="Wrap" Height="95"><Run Text="- Start a socks5 proxy via ssh"/><LineBreak/><Run/><LineBreak/><Run Text="- Upgrade the socks5 proxy to http (to use in programs like lens or other (browsers are ok to go too..."/><Run Language="pt-br" Text=")"/></TextBlock>
+                        <TextBlock HorizontalAlignment="Left" Margin="10,0,0,0" TextWrapping="Wrap" Height="95"><Run Text="- Start a socks5 proxy via ssh"/><LineBreak/><Run/><LineBreak/><Run Text="- Upgrade the socks5 proxy to http (to use in programs like lens or other (browsers are ok to go too..."/><Run Text=")"/><Run Language="pt-br" Text=")"/></TextBlock>
                     </GroupBox>
-                    <GroupBox HorizontalAlignment="Left" Height="68" Header="Http socks upgrade" Margin="8,76,0,0" VerticalAlignment="Top" Width="152">
-                        <Button Content="Upgrade socks to http" HorizontalAlignment="Center" Width="131" VerticalAlignment="Center" Click="Button_Click"/>
+                    <GroupBox HorizontalAlignment="Left" Height="68" Header="Http Proxy through socks" Margin="8,76,0,0" VerticalAlignment="Top" Width="152">
+                        <Button Content="Start" HorizontalAlignment="Center" Width="131" VerticalAlignment="Center" Click="Button_Click" IsEnabled="False"/>
                     </GroupBox>
-                    <TextBlock HorizontalAlignment="Left" Height="19" Margin="14,129,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="42" FontSize="10"><Run Language="pt-br" Text="Status:"/></TextBlock>
-                    <TextBlock HorizontalAlignment="Left" Height="19" Margin="45,129,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="52" Foreground="#FFFF9504" FontSize="10"><Run Language="pt-br" Text="Disabled"/></TextBlock>
-                    <TextBlock HorizontalAlignment="Left" Margin="242,133,0,0" TextWrapping="Wrap" VerticalAlignment="Top" FontFamily="Impact" FontSize="22"><Run Language="pt-br" Text="ViaProxy"/></TextBlock>
-                    <Label Content="By: Girorme" HorizontalAlignment="Left" Height="32" Margin="2,145,0,0" VerticalAlignment="Top" Width="72"/>
+                    <TextBlock HorizontalAlignment="Left" Height="19" Margin="14,128,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="42" FontSize="10"><Run Language="pt-br" Text="Status:"/></TextBlock>
+                    <TextBlock HorizontalAlignment="Left" Height="19" Margin="45,128,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="52" Foreground="#FFFF9504" FontSize="10"><Run Language="pt-br" Text="Disabled"/></TextBlock>
+                    <TextBlock HorizontalAlignment="Left" Margin="249,129,0,0" TextWrapping="Wrap" VerticalAlignment="Top" FontFamily="Impact" FontSize="22" Text="SHProxy"/>
+                    <Label Content="By: Girorme" HorizontalAlignment="Left" Height="32" Margin="1,144,0,0" VerticalAlignment="Top" Width="72" FontSize="9"/>
+                    <Label Content="V1.0.0" HorizontalAlignment="Left" Height="32" Margin="376,144,0,0" VerticalAlignment="Top" Width="52" FontSize="9"/>
                 </Grid>
             </TabItem>
             <TabItem Header="Config.">

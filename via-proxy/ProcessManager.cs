@@ -1,29 +1,49 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.Threading;
+using System.Windows;
+using System.Windows.Documents;
+using Renci.SshNet;
 
 namespace via_proxy
 {
-    internal class ProcessManager
+    class ProxyManager
     {
-        public void start_socks_via_ssh()
+        private SshClient sshClient;
+        private ForwardedPortDynamic socksProxy;
+
+        public void StartSshAndSocksProxy()
         {
-            // Start the SSH process
-            Process sshProcess = new Process();
-            sshProcess.StartInfo.FileName = "calc.exe"; 
-            sshProcess.Start();
-
-            // Store the PID of the SSH process
-            int sshProcessId = sshProcess.Id;
-            Console.WriteLine($"SSH process started with PID: {sshProcessId}");
-
-            // At some point, terminate the SSH process
-            Console.WriteLine("Terminating SSH process...");
-            Process sshProcessToKill = Process.GetProcessById(sshProcessId);
-            sshProcessToKill.Kill();
-            sshProcessToKill.WaitForExit();
-
-            Console.WriteLine("SSH process terminated.");
+            StartSshClient();
+            CreateSocksFromSsh();
         }
+
+        public void StopSshAndSocksProxy()
+        {
+            StopSocks();
+            StopSshClient();
+        }
+
+        public void StartSshClient()
+        {
+            string sshHost = "localhost";
+            int sshPort = 22;
+            string sshUsername = "ubuntu";
+            string sshPassword = "admin";
+
+            sshClient = new SshClient(sshHost, sshPort, sshUsername, sshPassword);
+            sshClient.Connect();
+        }
+
+        public void CreateSocksFromSsh()
+        {
+            socksProxy = new ForwardedPortDynamic("127.0.0.1", 1337);
+            sshClient.AddForwardedPort(socksProxy);
+            socksProxy.Start();
+        }
+
+        public void StopSocks() => socksProxy.Stop();
+        public void StopSshClient() => sshClient.Disconnect();
     }
 }

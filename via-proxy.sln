@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.6.33815.320
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "via-proxy", "via-proxy\via-proxy.csproj", "{CB51CE39-0C7E-4095-AF6A-2900ADE0E166}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "sh-proxy", "via-proxy\sh-proxy.csproj", "{CB51CE39-0C7E-4095-AF6A-2900ADE0E166}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -20,6 +21,8 @@ namespace via_proxy
     /// </summary>
     public partial class MainWindow : Window
     {
+        private Thread? proxyThread;
+
         public MainWindow()
         {
             InitializeComponent();
@@ -32,8 +35,17 @@ namespace via_proxy
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
-            ProcessManager pm = new ProcessManager();
-            pm.start_process();
+            ProxyManager pm = new();
+            
+            // Extract thread logic to "launcher"
+            proxyThread = new Thread(new ThreadStart(pm.StartSshAndSocksProxy));
+            proxyThread.Start();
+
+            
+            startSocksProxyBtn.Content = "Stop";
+
+            labelSocksProxyStatus.Text = "Enabled";
+            labelSocksProxyStatus.Foreground = Brushes.GreenYellow;
         }
     }
 }
