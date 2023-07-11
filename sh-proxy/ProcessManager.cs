@@ -6,7 +6,7 @@ using System.Windows;
 using System.Windows.Documents;
 using Renci.SshNet;
 
-namespace via_proxy
+namespace sh_proxy
 {
     class ProxyManager
     {

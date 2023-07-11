@@ -14,7 +14,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace via_proxy
+namespace sh_proxy
 {
     /// <summary>
     /// Interaction logic for MainWindow.xaml
