@@ -18,18 +18,18 @@
                         <ColumnDefinition/>
                     </Grid.ColumnDefinitions>
                     <GroupBox HorizontalAlignment="Left" Height="64" Header="Socks5 Proxy" Margin="8,5,0,0" VerticalAlignment="Top" Width="152">
-                        <Button x:Name="startSocksProxyBtn" Content="Start" HorizontalAlignment="Left" Width="131" VerticalAlignment="Center" Click="Button_Click_1"/>
+                        <Button x:Name="startSocksProxyBtn" Content="Start" HorizontalAlignment="Left" Width="131" VerticalAlignment="Center" Click="StartSocks_Click" />
                     </GroupBox>
                     <TextBlock HorizontalAlignment="Left" Height="18" Margin="13,53,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="42" FontSize="10"><Run Language="pt-br" Text="Status:"/></TextBlock>
-                    <TextBlock x:Name="labelSocksProxyStatus" HorizontalAlignment="Left" Height="18" Margin="44,53,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="52" Foreground="#FFFF9504" FontSize="10"><Run Language="pt-br" Text="Disabled"/></TextBlock>
+                    <TextBlock x:Name="labelSocksProxyStatus" HorizontalAlignment="Left" Height="18" Margin="44,53,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="52" FontSize="10" Foreground="#FFFF9504"><Run Language="pt-br" Text="Disabled"/></TextBlock>
                     <GroupBox HorizontalAlignment="Left" Height="143" Header="Goal" Margin="167,5,0,0" VerticalAlignment="Top" Width="237">
                         <TextBlock HorizontalAlignment="Left" Margin="10,0,0,0" TextWrapping="Wrap" Height="95"><Run Text="- Start a socks5 proxy via ssh"/><LineBreak/><Run/><LineBreak/><Run Text="- Upgrade the socks5 proxy to http (to use in programs like lens or other (browsers are ok to go too..."/><Run Text=")"/><Run Language="pt-br" Text=")"/></TextBlock>
                     </GroupBox>
-                    <GroupBox HorizontalAlignment="Left" Height="68" Header="Http Proxy through socks" Margin="8,76,0,0" VerticalAlignment="Top" Width="152">
-                        <Button Content="Start" HorizontalAlignment="Center" Width="131" VerticalAlignment="Center" Click="Button_Click" IsEnabled="False"/>
+                    <GroupBox HorizontalAlignment="Left" Height="68" Header="Http Proxy over socks" Margin="8,76,0,0" VerticalAlignment="Top" Width="152">
+                        <Button x:Name="startHttpProxyBtn" Content="Start" HorizontalAlignment="Center" Width="131" VerticalAlignment="Center" Click="StartHttp_Click" IsEnabled="False"/>
                     </GroupBox>
                     <TextBlock HorizontalAlignment="Left" Height="19" Margin="14,128,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="42" FontSize="10"><Run Language="pt-br" Text="Status:"/></TextBlock>
-                    <TextBlock HorizontalAlignment="Left" Height="19" Margin="45,128,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="52" Foreground="#FFFF9504" FontSize="10"><Run Language="pt-br" Text="Disabled"/></TextBlock>
+                    <TextBlock x:Name="labelHttpProxyStatus" HorizontalAlignment="Left" Height="19" Margin="45,128,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="52" Foreground="#FFFF9504" FontSize="10"><Run Language="pt-br" Text="Disabled"/></TextBlock>
                     <TextBlock HorizontalAlignment="Left" Margin="249,129,0,0" TextWrapping="Wrap" VerticalAlignment="Top" FontFamily="Impact" FontSize="22" Text="SHProxy"/>
                     <Label Content="By: Girorme" HorizontalAlignment="Left" Height="32" Margin="1,144,0,0" VerticalAlignment="Top" Width="72" FontSize="9"/>
                     <Label Content="V1.0.0" HorizontalAlignment="Left" Height="32" Margin="376,144,0,0" VerticalAlignment="Top" Width="52" FontSize="9"/>
@@ -43,33 +43,35 @@
                                 <ColumnDefinition Width="Auto"></ColumnDefinition>
                                 <ColumnDefinition Width="*"></ColumnDefinition>
                             </Grid.ColumnDefinitions>
-                            <Label Margin="5" Content="Domain Username:"/>
-                            <TextBox x:Name="domain_username" Grid.Column="1" Margin="10,5,5,5"></TextBox>
+                            <Label Margin="5" Content="Ssh Username:"/>
+                            <TextBox x:Name="sshUsernameInput" Grid.Column="1" Margin="9,9,6,6"></TextBox>
+                            <TextBox x:Name="sshServerInput" Grid.Column="1" Margin="9,76,6,-61"/>
                         </Grid>
                         <Grid>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="Auto"></ColumnDefinition>
                                 <ColumnDefinition Width="*"></ColumnDefinition>
                             </Grid.ColumnDefinitions>
-                            <Label Margin="5,4,5,6" Content="Domain Password:"/>
-                            <PasswordBox x:Name="domain_password" Grid.Column="1" Margin="14,5,5,5"></PasswordBox>
+                            <Label Margin="5,4,5,6" Content="Ssh Password:"/>
+                            <PasswordBox x:Name="sshPasswordInput" Grid.Column="1" Margin="13,7,6,8"></PasswordBox>
+                            <Label Margin="6,39,4,-29" Content="Ssh Server:"/>
                         </Grid>
                         <Grid>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="283"/>
                             </Grid.ColumnDefinitions>
-                            <Label Margin="5,5,158,5" Content="Socks port to bind:"/>
-                            <TextBox x:Name="socks_port" Margin="130,5,98,5"/>
+                            <Label Margin="6,35,157,-25" Content="Socks port to bind:"/>
+                            <TextBox x:Name="proxyPortSocksInput" Margin="130,38,98,-23"/>
                         </Grid>
                         <Grid>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="283"/>
                             </Grid.ColumnDefinitions>
-                            <Label Margin="5,5,158,5" Content="Http port to bind:"/>
-                            <TextBox x:Name="http_port" Margin="130,5,97,5"/>
+                            <Label Margin="6,32,157,-22" Content="Http port to bind:"/>
+                            <TextBox x:Name="proxyPortHttpInput" Margin="130,35,97,-20"/>
                         </Grid>
                     </StackPanel>
-                    <Button Content="Save config." HorizontalAlignment="Left" Margin="201,80,0,0" VerticalAlignment="Top" Height="54" Width="77"/>
+                    <Button x:Name="saveConfigBtn" Content="Save config." HorizontalAlignment="Left" Margin="193,109,0,0" VerticalAlignment="Top" Height="54" Width="85" Click="SaveConfig_Click"/>
                 </Grid>
             </TabItem>
         </TabControl>

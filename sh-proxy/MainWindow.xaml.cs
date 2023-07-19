@@ -1,18 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
+﻿using System.Windows;
 using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
+using sh_proxy.Properties;
 
 namespace sh_proxy
 {
@@ -21,11 +9,14 @@ namespace sh_proxy
     /// </summary>
     public partial class MainWindow : Window
     {
-        private Thread? proxyThread;
+        private ProxyManager proxyManager;
+        private ConfigManager configManager;
 
         public MainWindow()
         {
             InitializeComponent();
+            configManager = new ConfigManager();
+            proxyManager = new ProxyManager(configManager);
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
@@ -33,19 +24,78 @@ namespace sh_proxy
             MessageBox.Show("Proxy has been upgraded to http...");
         }
 
-        private void Button_Click_1(object sender, RoutedEventArgs e)
+        private void StartSocks_Click(object sender, RoutedEventArgs e)
         {
-            ProxyManager pm = new();
-            
-            // Extract thread logic to "launcher"
-            proxyThread = new Thread(new ThreadStart(pm.StartSshAndSocksProxy));
-            proxyThread.Start();
+            if (proxyManager.IsSocksProxyEnabled)
+            {
+                this.StopSshAndSocksProxy();
+                return;
+            }
 
-            
+            this.StartSshAndSocksProxy();
+        }
+
+        private void StartHttp_Click(object sender, RoutedEventArgs e)
+        {
+            if (proxyManager.IsHttpProxyEnabled)
+            {
+                this.StopHttpProxy();
+                return;
+            }
+
+            this.StartHttpProxy();
+        }
+
+        private void StartSshAndSocksProxy()
+        {
+            proxyManager.StartSshAndSocksProxy();
             startSocksProxyBtn.Content = "Stop";
-
             labelSocksProxyStatus.Text = "Enabled";
             labelSocksProxyStatus.Foreground = Brushes.GreenYellow;
+
+            startHttpProxyBtn.IsEnabled = true;
+        }
+
+        private void StartHttpProxy()
+        {
+            proxyManager.StartHttpProxy();
+            startHttpProxyBtn.Content = "Stop";
+            labelHttpProxyStatus.Text = "Enabled";
+            labelHttpProxyStatus.Foreground = Brushes.GreenYellow;
+        }
+
+        private void StopSshAndSocksProxy()
+        {
+            proxyManager.StopSshAndSocksProxy();
+            startSocksProxyBtn.Content = "Start";
+            labelSocksProxyStatus.Text = "Disabled";
+
+            SolidColorBrush foregroundBrush = (SolidColorBrush) new BrushConverter().ConvertFrom("#FFFF9504");
+            labelSocksProxyStatus.Foreground = foregroundBrush;
+
+            startHttpProxyBtn.IsEnabled = false;
+        }
+
+        private void StopHttpProxy()
+        {
+            proxyManager.StopHttpProxy();
+            startHttpProxyBtn.Content = "Start";
+            labelHttpProxyStatus.Text = "Disabled";
+
+            SolidColorBrush foregroundBrush = (SolidColorBrush)new BrushConverter().ConvertFrom("#FFFF9504");
+            labelHttpProxyStatus.Foreground = foregroundBrush;
+        }
+
+        private void SaveConfig_Click(object sender, RoutedEventArgs e)
+        {
+            configManager.SshServer = sshServerInput.Text;
+            configManager.SshUsername = sshUsernameInput.Text;
+            configManager.SshPassword = sshPasswordInput.Password;
+            configManager.ProxyPortSocks = uint.Parse(proxyPortSocksInput.Text);
+            configManager.ProxyPortHttp = uint.Parse(proxyPortHttpInput.Text);
+
+            // Settings.Default.sshServer = sshServerInput.Text;
+            Settings.Default.Save();
         }
     }
 }
