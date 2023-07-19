@@ -12,11 +12,32 @@ namespace sh_proxy
 
         private SshClient? sshClient;
         private ForwardedPortDynamic? socksProxy;
+        private CommandRunner? commandRunner;
+        private ConfigManager configManager;
+
+        public ProxyManager(ConfigManager configManager)
+        {
+            this.configManager = configManager;
+        }
         
         public void StartSshAndSocksProxy()
         {
             this.StartSshClient();
             this.CreateSocksFromSsh();
+        }
+
+        public void StartHttpProxy()
+        {
+            // TODO: Add executable to solution
+            commandRunner = new CommandRunner();
+            commandRunner.StartCommand($"R:\\socks-to-http-proxy-main\\socks-to-http-proxy-main\\target\\release\\sthp -p {configManager.ProxyPortHttp} -s 127.0.0.1:{configManager.ProxyPortSocks}");
+            this.IsHttpProxyEnabled = true;
+        }
+
+        public void StopHttpProxy()
+        {
+            commandRunner.StopCommand();
+            this.IsHttpProxyEnabled = false;
         }
 
         public void StopSshAndSocksProxy()
@@ -29,10 +50,10 @@ namespace sh_proxy
 
         public void StartSshClient()
         {
-            string sshHost = "localhost";
+            string sshHost = configManager.SshServer;
             int sshPort = 22;
-            string sshUsername = "ubuntu";
-            string sshPassword = "admin";
+            string sshUsername = configManager.SshUsername;
+            string sshPassword = configManager.SshPassword;
 
             this.sshClient = new SshClient(sshHost, sshPort, sshUsername, sshPassword);
             this.sshClient.Connect();
@@ -40,7 +61,7 @@ namespace sh_proxy
 
         public void CreateSocksFromSsh()
         {
-            this.socksProxy = new ForwardedPortDynamic("127.0.0.1", 1337);
+            this.socksProxy = new ForwardedPortDynamic("127.0.0.1", configManager.ProxyPortSocks);
             this.sshClient.AddForwardedPort(socksProxy);
             this.socksProxy.Start();
 
