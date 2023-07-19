@@ -5,6 +5,7 @@ using System.Data;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
+using sh_proxy.Properties;
 
 namespace via_proxy
 {
@@ -13,5 +14,9 @@ namespace via_proxy
     /// </summary>
     public partial class App : Application
     {
+        protected override void OnExit(ExitEventArgs e)
+        {
+            base.OnExit(e);
+        }
     }
 }
