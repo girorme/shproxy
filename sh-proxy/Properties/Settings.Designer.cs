@@ -23,48 +23,63 @@ namespace sh_proxy.Properties {
             }
         }
         
-        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("")]
         public string sshServer {
             get {
                 return ((string)(this["sshServer"]));
             }
+            set {
+                this["sshServer"] = value;
+            }
         }
         
-        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("")]
         public string sshUsername {
             get {
                 return ((string)(this["sshUsername"]));
             }
+            set {
+                this["sshUsername"] = value;
+            }
         }
         
-        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("")]
         public string sshPassword {
             get {
                 return ((string)(this["sshPassword"]));
             }
+            set {
+                this["sshPassword"] = value;
+            }
         }
         
-        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("")]
         public string proxyPortHttp {
             get {
                 return ((string)(this["proxyPortHttp"]));
             }
+            set {
+                this["proxyPortHttp"] = value;
+            }
         }
         
-        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("")]
         public string proxyPortSocks {
             get {
                 return ((string)(this["proxyPortSocks"]));
+            }
+            set {
+                this["proxyPortSocks"] = value;
             }
         }
     }

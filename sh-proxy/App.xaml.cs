@@ -16,6 +16,8 @@ namespace via_proxy
     {
         protected override void OnExit(ExitEventArgs e)
         {
+            Settings.Default.Save();
+
             base.OnExit(e);
         }
     }

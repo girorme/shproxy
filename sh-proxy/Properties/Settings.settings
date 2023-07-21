@@ -2,19 +2,19 @@
 <SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="sh_proxy.Properties" GeneratedClassName="Settings">
   <Profiles />
   <Settings>
-    <Setting Name="sshServer" Type="System.String" Scope="Application">
+    <Setting Name="sshServer" Type="System.String" Scope="User">
       <Value Profile="(Default)" />
     </Setting>
-    <Setting Name="sshUsername" Type="System.String" Scope="Application">
+    <Setting Name="sshUsername" Type="System.String" Scope="User">
       <Value Profile="(Default)" />
     </Setting>
-    <Setting Name="sshPassword" Type="System.String" Scope="Application">
+    <Setting Name="sshPassword" Type="System.String" Scope="User">
       <Value Profile="(Default)" />
     </Setting>
-    <Setting Name="proxyPortHttp" Type="System.String" Scope="Application">
+    <Setting Name="proxyPortHttp" Type="System.String" Scope="User">
       <Value Profile="(Default)" />
     </Setting>
-    <Setting Name="proxyPortSocks" Type="System.String" Scope="Application">
+    <Setting Name="proxyPortSocks" Type="System.String" Scope="User">
       <Value Profile="(Default)" />
     </Setting>
   </Settings>

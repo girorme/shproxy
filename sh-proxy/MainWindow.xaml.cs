@@ -17,6 +17,8 @@ namespace sh_proxy
             InitializeComponent();
             configManager = new ConfigManager();
             proxyManager = new ProxyManager(configManager);
+
+            FillInputs();
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
@@ -70,7 +72,7 @@ namespace sh_proxy
             startSocksProxyBtn.Content = "Start";
             labelSocksProxyStatus.Text = "Disabled";
 
-            SolidColorBrush foregroundBrush = (SolidColorBrush) new BrushConverter().ConvertFrom("#FFFF9504");
+            SolidColorBrush foregroundBrush = (SolidColorBrush)new BrushConverter().ConvertFrom("#FFFF9504");
             labelSocksProxyStatus.Foreground = foregroundBrush;
 
             startHttpProxyBtn.IsEnabled = false;
@@ -94,7 +96,28 @@ namespace sh_proxy
             configManager.ProxyPortSocks = uint.Parse(proxyPortSocksInput.Text);
             configManager.ProxyPortHttp = uint.Parse(proxyPortHttpInput.Text);
 
-            // Settings.Default.sshServer = sshServerInput.Text;
+            SaveProperties();
+        }
+
+        private void FillInputs()
+        {
+            Settings.Default.Reload();
+
+            sshServerInput.Text = Settings.Default.sshServer;
+            sshUsernameInput.Text = Settings.Default.sshUsername;
+            sshPasswordInput.Password = Settings.Default.sshPassword;
+            proxyPortSocksInput.Text = Settings.Default.proxyPortSocks.ToString();
+            proxyPortHttpInput.Text = Settings.Default.proxyPortHttp.ToString();
+        }
+
+        private void SaveProperties()
+        {
+            Settings.Default.sshServer = sshServerInput.Text;
+            Settings.Default.sshUsername = sshUsernameInput.Text;
+            Settings.Default.sshPassword = sshPasswordInput.Password;
+            Settings.Default.proxyPortSocks = proxyPortSocksInput.Text;
+            Settings.Default.proxyPortHttp = proxyPortHttpInput.Text;
+
             Settings.Default.Save();
         }
     }
