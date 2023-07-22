@@ -25,7 +25,7 @@ namespace sh_proxy.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        [global::System.Configuration.DefaultSettingValueAttribute("localhost")]
         public string sshServer {
             get {
                 return ((string)(this["sshServer"]));
@@ -37,7 +37,7 @@ namespace sh_proxy.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        [global::System.Configuration.DefaultSettingValueAttribute("username")]
         public string sshUsername {
             get {
                 return ((string)(this["sshUsername"]));
@@ -49,7 +49,7 @@ namespace sh_proxy.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        [global::System.Configuration.DefaultSettingValueAttribute("password")]
         public string sshPassword {
             get {
                 return ((string)(this["sshPassword"]));
@@ -61,7 +61,7 @@ namespace sh_proxy.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        [global::System.Configuration.DefaultSettingValueAttribute("8080")]
         public string proxyPortHttp {
             get {
                 return ((string)(this["proxyPortHttp"]));
@@ -73,7 +73,7 @@ namespace sh_proxy.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        [global::System.Configuration.DefaultSettingValueAttribute("1337")]
         public string proxyPortSocks {
             get {
                 return ((string)(this["proxyPortSocks"]));

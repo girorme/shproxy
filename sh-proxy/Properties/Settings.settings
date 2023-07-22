@@ -3,19 +3,19 @@
   <Profiles />
   <Settings>
     <Setting Name="sshServer" Type="System.String" Scope="User">
-      <Value Profile="(Default)" />
+      <Value Profile="(Default)">localhost</Value>
     </Setting>
     <Setting Name="sshUsername" Type="System.String" Scope="User">
-      <Value Profile="(Default)" />
+      <Value Profile="(Default)">username</Value>
     </Setting>
     <Setting Name="sshPassword" Type="System.String" Scope="User">
-      <Value Profile="(Default)" />
+      <Value Profile="(Default)">password</Value>
     </Setting>
     <Setting Name="proxyPortHttp" Type="System.String" Scope="User">
-      <Value Profile="(Default)" />
+      <Value Profile="(Default)">8080</Value>
     </Setting>
     <Setting Name="proxyPortSocks" Type="System.String" Scope="User">
-      <Value Profile="(Default)" />
+      <Value Profile="(Default)">1337</Value>
     </Setting>
   </Settings>
 </SettingsFile>
