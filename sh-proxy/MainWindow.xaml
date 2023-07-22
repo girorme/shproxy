@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:sh_proxy"
         mc:Ignorable="d"
-        Title="SH Proxy" Height="233" Width="426" ResizeMode="NoResize">
+        Title="SH Proxy" Height="233" Width="426" ResizeMode="CanMinimize">
     <Grid x:Name="Main" Margin="0,0,0,3" Opacity="0.8">
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
@@ -30,7 +30,7 @@
                     </GroupBox>
                     <TextBlock HorizontalAlignment="Left" Height="19" Margin="14,128,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="42" FontSize="10"><Run Language="pt-br" Text="Status:"/></TextBlock>
                     <TextBlock x:Name="labelHttpProxyStatus" HorizontalAlignment="Left" Height="19" Margin="45,128,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="52" Foreground="#FFFF9504" FontSize="10"><Run Language="pt-br" Text="Disabled"/></TextBlock>
-                    <TextBlock HorizontalAlignment="Left" Margin="249,129,0,0" TextWrapping="Wrap" VerticalAlignment="Top" FontFamily="Impact" FontSize="22" Text="SHProxy"/>
+                    <TextBlock HorizontalAlignment="Left" Margin="249,97,0,0" TextWrapping="Wrap" VerticalAlignment="Top" FontFamily="Impact" FontSize="22" Text="SHProxy"/>
                     <Label Content="By: Girorme" HorizontalAlignment="Left" Height="32" Margin="1,144,0,0" VerticalAlignment="Top" Width="72" FontSize="9"/>
                     <Label Content="V1.0.0" HorizontalAlignment="Left" Height="32" Margin="376,144,0,0" VerticalAlignment="Top" Width="52" FontSize="9"/>
                 </Grid>
