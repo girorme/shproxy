@@ -1,6 +1,7 @@
 ﻿using System;
 using Renci.SshNet;
 using System.IO;
+using System.Windows;
 
 namespace sh_proxy
 {
@@ -19,10 +20,19 @@ namespace sh_proxy
             this.configManager = configManager;
         }
         
-        public void StartSshAndSocksProxy()
+        public bool StartSshAndSocksProxy()
         {
-            StartSshClient();
-            CreateSocksFromSsh();
+            try
+            {
+                StartSshClient();
+                CreateSocksFromSsh();
+
+                return true;
+            } catch (System.Net.Sockets.SocketException)
+            {
+                MessageBox.Show("Unable to connect to ssh, please check the server/credentials", "Connection error", MessageBoxButton.OK, MessageBoxImage.Error);
+                return false;
+            }
         }
 
         public void StartHttpProxy()

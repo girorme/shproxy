@@ -50,7 +50,11 @@ namespace sh_proxy
 
         private void StartSshAndSocksProxy()
         {
-            proxyManager.StartSshAndSocksProxy();
+            if (proxyManager.StartSshAndSocksProxy() == false)
+            {
+                return;
+            }
+
             startSocksProxyBtn.Content = "Stop";
             labelSocksProxyStatus.Text = "Enabled";
             labelSocksProxyStatus.Foreground = Brushes.GreenYellow;
