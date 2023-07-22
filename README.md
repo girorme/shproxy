@@ -34,5 +34,9 @@ Now you need to set `127.0.0.1:socks_port_used_in_config` to socks5 in proxy con
 
 ![image](https://github.com/girorme/shproxy/assets/54730507/ceba324a-a590-443f-a7dc-87aed9bfd0a4)
 
+Download
+---
+- [Link](https://github.com/girorme/shproxy/releases/tag/1.0.0)
+
 
 > This tool was built for research purposes, the creator is not responsible for misuse
