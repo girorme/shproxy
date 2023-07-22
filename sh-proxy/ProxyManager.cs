@@ -6,15 +6,13 @@ namespace sh_proxy
 {
     class ProxyManager
     {
-        public const bool OFF = false;
-        public const bool ON = true;
         public bool IsSocksProxyEnabled { get; set; }
         public bool IsHttpProxyEnabled { get; set; }
 
         private SshClient? sshClient;
         private ForwardedPortDynamic? socksProxy;
         private CommandRunner? commandRunner;
-        private ConfigManager configManager;
+        private ConfigManager? configManager;
 
         public ProxyManager(ConfigManager configManager)
         {
@@ -23,53 +21,66 @@ namespace sh_proxy
         
         public void StartSshAndSocksProxy()
         {
-            this.StartSshClient();
-            this.CreateSocksFromSsh();
+            StartSshClient();
+            CreateSocksFromSsh();
         }
 
         public void StartHttpProxy()
         {
             commandRunner = new CommandRunner();
             commandRunner.StartCommand($".\\sthp -p {configManager.ProxyPortHttp} -s 127.0.0.1:{configManager.ProxyPortSocks}");
-            this.IsHttpProxyEnabled = true;
+            IsHttpProxyEnabled = true;
         }
 
         public void StopHttpProxy()
         {
+            if (commandRunner is null) return;
+
             commandRunner.StopCommand();
-            this.IsHttpProxyEnabled = false;
+            IsHttpProxyEnabled = false;
         }
 
         public void StopSshAndSocksProxy()
         {
-            this.StopSocks();
-            this.StopSshClient();
+            StopSocks();
+            StopSshClient();
 
-            this.IsSocksProxyEnabled = false;
+            IsSocksProxyEnabled = false;
         }
 
         public void StartSshClient()
         {
+            if (configManager is null) return;
+
             string sshHost = configManager.SshServer;
             int sshPort = 22;
             string sshUsername = configManager.SshUsername;
             string sshPassword = configManager.SshPassword;
 
-            this.sshClient = new SshClient(sshHost, sshPort, sshUsername, sshPassword);
-            this.sshClient.Connect();
+            sshClient = new SshClient(sshHost, sshPort, sshUsername, sshPassword);
+            sshClient.Connect();
         }
 
         public void CreateSocksFromSsh()
         {
-            this.socksProxy = new ForwardedPortDynamic("127.0.0.1", configManager.ProxyPortSocks);
-            this.sshClient.AddForwardedPort(socksProxy);
-            this.socksProxy.Start();
+            if (configManager is null || sshClient is null) return;
 
-            this.IsSocksProxyEnabled = true;
+            socksProxy = new ForwardedPortDynamic("127.0.0.1", configManager.ProxyPortSocks);
+            sshClient.AddForwardedPort(socksProxy);
+            socksProxy.Start();
+            IsSocksProxyEnabled = true;
         }
 
-        private void StopSocks() => this.socksProxy.Stop();
-        private void StopSshClient() => this.sshClient.Disconnect();
-        private static void StopWithAppExcept() => throw new ApplicationException("Error starting socks/http proxy");
+        private void StopSocks()
+        {
+            if (socksProxy is null) return;
+            socksProxy.Stop();
+        }
+
+        private void StopSshClient()
+        {
+            if (sshClient is null) return;
+            sshClient.Disconnect();
+        }
     }
 }

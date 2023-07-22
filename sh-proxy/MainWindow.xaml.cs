@@ -9,8 +9,8 @@ namespace sh_proxy
     /// </summary>
     public partial class MainWindow : Window
     {
-        private ProxyManager proxyManager;
-        private ConfigManager configManager;
+        private readonly ProxyManager proxyManager;
+        private readonly ConfigManager configManager;
 
         public MainWindow()
         {
@@ -30,22 +30,22 @@ namespace sh_proxy
         {
             if (proxyManager.IsSocksProxyEnabled)
             {
-                this.StopSshAndSocksProxy();
+                StopSshAndSocksProxy();
                 return;
             }
 
-            this.StartSshAndSocksProxy();
+            StartSshAndSocksProxy();
         }
 
         private void StartHttp_Click(object sender, RoutedEventArgs e)
         {
             if (proxyManager.IsHttpProxyEnabled)
             {
-                this.StopHttpProxy();
+                StopHttpProxy();
                 return;
             }
 
-            this.StartHttpProxy();
+            StartHttpProxy();
         }
 
         private void StartSshAndSocksProxy()
@@ -72,7 +72,7 @@ namespace sh_proxy
             startSocksProxyBtn.Content = "Start";
             labelSocksProxyStatus.Text = "Disabled";
 
-            SolidColorBrush foregroundBrush = (SolidColorBrush)new BrushConverter().ConvertFrom("#FFFF9504");
+            SolidColorBrush foregroundBrush = (SolidColorBrush) new BrushConverter().ConvertFrom("#FFFF9504");
             labelSocksProxyStatus.Foreground = foregroundBrush;
 
             StopHttpProxy();
@@ -85,13 +85,8 @@ namespace sh_proxy
             startHttpProxyBtn.Content = "Start";
             labelHttpProxyStatus.Text = "Disabled";
 
-            SolidColorBrush foregroundBrush = (SolidColorBrush)new BrushConverter().ConvertFrom("#FFFF9504");
+            SolidColorBrush foregroundBrush = (SolidColorBrush) new BrushConverter().ConvertFrom("#FFFF9504");
             labelHttpProxyStatus.Foreground = foregroundBrush;
-        }
-
-        private void SaveConfig_Click(object sender, RoutedEventArgs e)
-        {
-            SaveProperties();
         }
 
         private void FillInputs()
@@ -123,5 +118,7 @@ namespace sh_proxy
 
             Settings.Default.Save();
         }
+
+        private void SaveConfig_Click(object sender, RoutedEventArgs e) => SaveProperties();
     }
 }
