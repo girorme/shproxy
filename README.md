@@ -1,6 +1,6 @@
 # sh-proxy
 
-> SHProxy is a user-friendly tool that allows you to access a machine within a specific network, even if you are outside it (imagine a vpn with VPN connection :) ). With SHProxy, you can establish a secure SOCKS tunnel through SSH, ensuring your data remains encrypted and protected.
+> SHProxy is a user-friendly tool that allows you to access a machine within a specific network, even if you are outside it (imagine a job machine with VPN connection :) ). With SHProxy, you can establish a secure SOCKS tunnel through SSH, ensuring your data remains encrypted and protected.
 
 Here's how SHProxy works:
 - Connect to Remote Machine: First, you connect to a remote machine inside the target network using a VPN. This step allows you to access resources and services that are otherwise restricted to the local network.
