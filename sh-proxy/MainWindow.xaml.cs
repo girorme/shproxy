@@ -75,12 +75,13 @@ namespace sh_proxy
             SolidColorBrush foregroundBrush = (SolidColorBrush)new BrushConverter().ConvertFrom("#FFFF9504");
             labelSocksProxyStatus.Foreground = foregroundBrush;
 
-            startHttpProxyBtn.IsEnabled = false;
+            StopHttpProxy();
         }
 
         private void StopHttpProxy()
         {
             proxyManager.StopHttpProxy();
+            startHttpProxyBtn.IsEnabled = false;
             startHttpProxyBtn.Content = "Start";
             labelHttpProxyStatus.Text = "Disabled";
 
