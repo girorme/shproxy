@@ -18,4 +18,21 @@ Abstract
 
 With SHProxy, you can seamlessly work with resources and services within the target network, regardless of your physical location. The tool simplifies the process and ensures your data remains secure throughout the entire connection.
 
+Usage
+---
+Set the ssh configuration + ports you want to use socks + http proxy in configuration tab:
+<p>
+  <img src="https://github.com/girorme/shproxy/assets/54730507/312102ad-19b0-40ba-a497-8df14517d4b7" alt="Main Screen">
+</p>
+
+In the main screen start the socks proxy, wait and start the http proxy:
+<p>
+  <img src="https://github.com/girorme/shproxy/assets/54730507/613dbbb5-10a3-4c2d-8f0f-ca66a4c2d6a2" alt="Main Screen">
+</p>
+
+Now you need to set `127.0.0.1:socks_port_used_in_config` to socks5 in proxy configuration (browser, other programs) or `127.0.0.1:http_port_used_in_config` to http, in my example:
+
+![image](https://github.com/girorme/shproxy/assets/54730507/ceba324a-a590-443f-a7dc-87aed9bfd0a4)
+
+
 > This tool was built for research purposes, the creator is not responsible for misuse
