@@ -8,13 +8,13 @@ namespace sh_proxy
 
     public class CommandRunner
     {
-        private CancellationTokenSource cancellationTokenSource;
-        private Process process;
+        private CancellationTokenSource? cancellationTokenSource;
+        private Process? process;
 
         public void StartCommand(string command)
         {
             cancellationTokenSource = new CancellationTokenSource();
-            var token = cancellationTokenSource.Token;
+            CancellationToken token = cancellationTokenSource.Token;
 
             process = new Process
             {

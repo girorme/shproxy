@@ -1,5 +1,6 @@
 ﻿using System;
 using Renci.SshNet;
+using System.IO;
 
 namespace sh_proxy
 {
@@ -28,9 +29,8 @@ namespace sh_proxy
 
         public void StartHttpProxy()
         {
-            // TODO: Add executable to solution
             commandRunner = new CommandRunner();
-            commandRunner.StartCommand($"R:\\socks-to-http-proxy-main\\socks-to-http-proxy-main\\target\\release\\sthp -p {configManager.ProxyPortHttp} -s 127.0.0.1:{configManager.ProxyPortSocks}");
+            commandRunner.StartCommand($".\\sthp -p {configManager.ProxyPortHttp} -s 127.0.0.1:{configManager.ProxyPortSocks}");
             this.IsHttpProxyEnabled = true;
         }
 

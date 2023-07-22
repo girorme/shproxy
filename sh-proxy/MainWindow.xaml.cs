@@ -90,12 +90,6 @@ namespace sh_proxy
 
         private void SaveConfig_Click(object sender, RoutedEventArgs e)
         {
-            configManager.SshServer = sshServerInput.Text;
-            configManager.SshUsername = sshUsernameInput.Text;
-            configManager.SshPassword = sshPasswordInput.Password;
-            configManager.ProxyPortSocks = uint.Parse(proxyPortSocksInput.Text);
-            configManager.ProxyPortHttp = uint.Parse(proxyPortHttpInput.Text);
-
             SaveProperties();
         }
 
@@ -108,10 +102,18 @@ namespace sh_proxy
             sshPasswordInput.Password = Settings.Default.sshPassword;
             proxyPortSocksInput.Text = Settings.Default.proxyPortSocks.ToString();
             proxyPortHttpInput.Text = Settings.Default.proxyPortHttp.ToString();
+
+            SaveProperties();
         }
 
         private void SaveProperties()
         {
+            configManager.SshServer = sshServerInput.Text;
+            configManager.SshUsername = sshUsernameInput.Text;
+            configManager.SshPassword = sshPasswordInput.Password;
+            configManager.ProxyPortSocks = uint.Parse(proxyPortSocksInput.Text);
+            configManager.ProxyPortHttp = uint.Parse(proxyPortHttpInput.Text);
+
             Settings.Default.sshServer = sshServerInput.Text;
             Settings.Default.sshUsername = sshUsernameInput.Text;
             Settings.Default.sshPassword = sshPasswordInput.Password;
