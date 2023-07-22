@@ -23,7 +23,7 @@
                     <TextBlock HorizontalAlignment="Left" Height="18" Margin="13,53,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="42" FontSize="10"><Run Language="pt-br" Text="Status:"/></TextBlock>
                     <TextBlock x:Name="labelSocksProxyStatus" HorizontalAlignment="Left" Height="18" Margin="44,53,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="52" FontSize="10" Foreground="#FFFF9504"><Run Language="pt-br" Text="Disabled"/></TextBlock>
                     <GroupBox HorizontalAlignment="Left" Height="143" Header="Goal" Margin="167,5,0,0" VerticalAlignment="Top" Width="237">
-                        <TextBlock HorizontalAlignment="Left" Margin="10,0,0,0" TextWrapping="Wrap" Height="95"><Run Text="- Start a socks5 proxy via ssh"/><LineBreak/><Run/><LineBreak/><Run Text="- Upgrade the socks5 proxy to http (to use in programs like lens or other (browsers are ok to go too..."/><Run Text=")"/><Run Language="pt-br" Text=")"/></TextBlock>
+                        <TextBlock HorizontalAlignment="Left" Margin="10,0,0,0" TextWrapping="Wrap" Height="95"><Run Text="- Start socks5 proxy via ssh"/><LineBreak/><Run Text="- Upgrade socks5 proxy to http (to use in programs "/><Run Language="pt-br" Text="that requires a http proxy)"/></TextBlock>
                     </GroupBox>
                     <GroupBox HorizontalAlignment="Left" Height="68" Header="Http Proxy over socks" Margin="8,76,0,0" VerticalAlignment="Top" Width="152">
                         <Button x:Name="startHttpProxyBtn" Content="Start" HorizontalAlignment="Center" Width="131" VerticalAlignment="Center" Click="StartHttp_Click" IsEnabled="False"/>
