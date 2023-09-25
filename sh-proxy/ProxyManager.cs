@@ -28,9 +28,9 @@ namespace sh_proxy
                 CreateSocksFromSsh();
 
                 return true;
-            } catch (System.Net.Sockets.SocketException)
+            } catch (System.Net.Sockets.SocketException e)
             {
-                MessageBox.Show("Unable to connect to ssh, please check the server/credentials", "Connection error", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show($"Unable to connect to ssh: {e.Message}", "Connection error", MessageBoxButton.OK, MessageBoxImage.Error);
                 return false;
             }
         }
