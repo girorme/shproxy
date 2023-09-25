@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Media;
 using sh_proxy.Properties;
 
@@ -18,6 +19,7 @@ namespace sh_proxy
             configManager = new ConfigManager();
             proxyManager = new ProxyManager(configManager);
 
+            InitializeNotifyIcon();
             FillInputs();
         }
 
@@ -26,7 +28,7 @@ namespace sh_proxy
             MessageBox.Show("Proxy has been upgraded to http...");
         }
 
-        private void StartSocks_Click(object sender, RoutedEventArgs e)
+        private async void StartSocks_Click(object sender, RoutedEventArgs e)
         {
             if (proxyManager.IsSocksProxyEnabled)
             {
@@ -34,7 +36,32 @@ namespace sh_proxy
                 return;
             }
 
-            StartSshAndSocksProxy();
+            startSocksProxyBtn.IsEnabled = false;
+            labelSocksProxyStatus.Text = "Connecting...";
+            SolidColorBrush foregroundBrush = (SolidColorBrush)new BrushConverter().ConvertFrom("#FFFF9504");
+            labelSocksProxyStatus.Foreground = Brushes.BlueViolet;
+
+            bool isConnected = await Task.Run(() => StartSshAndSocksProxy());
+            var enableHttpSock = true;
+            var buttonAction = "Stop";
+            var labelStatus = "Enabled";
+
+            if (!isConnected)
+            {
+                enableHttpSock = false;
+                buttonAction = "Start";
+                labelStatus = "Disabled";
+
+                foregroundBrush = (SolidColorBrush)new BrushConverter().ConvertFrom("#FFFF9504");
+                labelSocksProxyStatus.Foreground = foregroundBrush;
+            }
+
+            startSocksProxyBtn.Content = buttonAction;
+            labelSocksProxyStatus.Text = labelStatus;
+            labelSocksProxyStatus.Foreground = Brushes.GreenYellow;
+
+            startHttpProxyBtn.IsEnabled = enableHttpSock;
+
         }
 
         private void StartHttp_Click(object sender, RoutedEventArgs e)
@@ -48,18 +75,14 @@ namespace sh_proxy
             StartHttpProxy();
         }
 
-        private void StartSshAndSocksProxy()
+        private bool StartSshAndSocksProxy()
         {
             if (proxyManager.StartSshAndSocksProxy() == false)
             {
-                return;
+                return false;
             }
 
-            startSocksProxyBtn.Content = "Stop";
-            labelSocksProxyStatus.Text = "Enabled";
-            labelSocksProxyStatus.Foreground = Brushes.GreenYellow;
-
-            startHttpProxyBtn.IsEnabled = true;
+            return true;
         }
 
         private void StartHttpProxy()
@@ -89,8 +112,13 @@ namespace sh_proxy
             startHttpProxyBtn.Content = "Start";
             labelHttpProxyStatus.Text = "Disabled";
 
+            startSocksProxyBtn.IsEnabled = true;
+            startSocksProxyBtn.Content = "Start";
+            labelSocksProxyStatus.Text = "Disabled";
+
             SolidColorBrush foregroundBrush = (SolidColorBrush) new BrushConverter().ConvertFrom("#FFFF9504");
             labelHttpProxyStatus.Foreground = foregroundBrush;
+            labelSocksProxyStatus.Foreground = foregroundBrush;
         }
 
         private void FillInputs()
@@ -124,5 +152,15 @@ namespace sh_proxy
         }
 
         private void SaveConfig_Click(object sender, RoutedEventArgs e) => SaveProperties();
+
+        private void InitializeNotifyIcon()
+        {
+            
+        }
+
+        private void Window_StateChanged(object sender, System.EventArgs e)
+        {
+
+        }
     }
 }
